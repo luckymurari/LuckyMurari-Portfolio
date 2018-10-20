@@ -9,11 +9,22 @@
   </head>
   <body>
     <!-- HTML -->
-    <div id="placeholder"></div>
+    <div id="placeholder">
+      <div id="table"></div>
+<input id="table-filter" type="text"></input></div>
 
     <!-- Templates -->
     <script id="placeholder" type="text/html">
-      // template HTML here
+<script text="text/javascript" id="table-templ">
+  <table>
+    <th><tr>
+      <td class="tHeader">COLUMN HEADER</td><td class="tHeader">COLUMN HEADER</td><td class="tHeader">COLUMN HEADER</td>
+    </tr></th>
+    <tbody><tr>
+      <td>{{Unit Name}}</td><td>{{Total Investment}}</td><td>{{Current Value}}</td>
+    </tr></tbody>
+  </table>
+</script>
     </script>
 
     <!-- JavaScript -->
@@ -23,7 +34,15 @@
           Tabletop.init( { key: URL, callback: myData, simpleSheet: true } )
       })
       function myData(data) {
-          All the sheetsee things you want to do!
+          var tableOpts = {
+                  "data": data,
+                  "pagination": 10,
+                  "tableDiv": "#table",
+                  "filterDiv": "#table-filter",
+                  "templateID": "table-templ"
+                  }
+Sheetsee.makeTable(tableOpts)
+Sheetsee.initiateFilter(tableOpts)
       }
     </script>
   </body>
